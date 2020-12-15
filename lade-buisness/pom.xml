@@ -8,5 +8,16 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>lade-buisness</artifactId>
-
+	<dependencies>
+		<dependency>
+			<groupId>org.compain.lade</groupId>
+			<artifactId>lade-consumer</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.compain.lade</groupId>
+			<artifactId>lade-model</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

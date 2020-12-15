@@ -2,18 +2,19 @@ package org.compain.lade.lade.entities;
 
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "topo",
+@Table(name = "Topo",
 uniqueConstraints = { @UniqueConstraint(columnNames = { "id_topo" }) })
 
 public class Topo {
@@ -21,32 +22,35 @@ public class Topo {
 	@Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column( name = "id_topo" )
-	private int idTopo; 
+	private Integer idTopo; 
 	
 	@Column( name = "name", nullable=false  )
 	private String name;
 	
 	@Column( name = "available", nullable=false  )
-	private boolean available;
+	private Boolean available;
 	
 	@Column( name = "description", nullable=false  )
 	private String description;
 	
+	@Column( name = "location", nullable=false  )
+	private String location;
+	
 	@Column( name = "publication_date", nullable=false  )
 	private Date publicationDate;
 	
-	@OneToMany
-	private List<ReservationInquiry> reservationInquiries = new ArrayList<>();
+	@OneToMany ( targetEntity=ReservationInquiry.class, mappedBy="topo" )
+	private List<ReservationInquiry> reservationInquiries;
 	
-	@OneToMany
-	private List<Comment> comments;
+	@ManyToOne @JoinColumn( name="id_user" )
+	private User user;
 	
 	// getter and setter
 	
-	public int getIdTopo() {
+	public Integer getIdTopo() {
 		return idTopo;
 	}
-	public void setIdTopo(int idTopo) {
+	public void setIdTopo(Integer idTopo) {
 		this.idTopo = idTopo;
 	}
 	public String getName() {
@@ -67,7 +71,7 @@ public class Topo {
 	public void setPublicationDate(Date publicationDate) {
 		this.publicationDate = publicationDate;
 	}
-	public boolean isAvailable() {
+	public Boolean isAvailable() {
 		return available;
 	}
 	public void setAvailable(boolean available) {
@@ -79,11 +83,24 @@ public class Topo {
 	public void setReservationInquiries(List<ReservationInquiry> reservationInquiries) {
 		this.reservationInquiries = reservationInquiries;
 	}
-	public List<Comment> getComments() {
-		return comments;
+
+	public User getUser() {
+		return user;
 	}
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Boolean getAvailable() {
+		return available;
+	}
+	public void setAvailable(Boolean available) {
+		this.available = available;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 }

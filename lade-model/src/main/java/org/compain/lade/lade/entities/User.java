@@ -6,13 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "user",
+@Table(name = "User_account",
 uniqueConstraints = { @UniqueConstraint(columnNames = { "id_user" }) })
 
 public class User {
@@ -20,7 +21,7 @@ public class User {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column( name = "id_user" )
-	private int idUser;
+	private Integer idUser;
     
     @Column( name = "name", nullable=false  )
 	private String name;
@@ -32,30 +33,31 @@ public class User {
     
 	private String email;
     
-    @Column( name = "login", nullable=false  )
+    @Column( name = "login", nullable=false, unique = true  )
 	private String login;
     
     @Column( name = "password", nullable=false  )
-	private String password;
-    
-    @OneToOne
+	private String password; 
+	
+	@ManyToOne 
+	@JoinColumn( name="code" )
 	private Role role;
     
-	@OneToMany
+	@OneToMany ( targetEntity=Topo.class, mappedBy="user" )
 	private List<Topo> topos; 
 	
-	@OneToMany
+	@OneToMany ( targetEntity=ReservationInquiry.class, mappedBy="user" )
 	private List<ReservationInquiry> reservationInquiries;
 	
-	@OneToMany
+	@OneToMany ( targetEntity=Comment.class, mappedBy="user" )
 	private List<Comment> comments;
 	
 	// getter and setter
 	
-	public int getIdUser() {
+	public Integer getIdUser() {
 		return idUser;
 	}
-	public void setIdUser(int idUser) {
+	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
 	public String getName() {
@@ -88,12 +90,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Role getRole() {
-		return role;
-	}
-	public void setRole(Role role) {
-		this.role = role;
-	}
 	public List<Topo> getTopos() {
 		return topos;
 	}
@@ -111,6 +107,12 @@ public class User {
 	}
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 }

@@ -1,0 +1,127 @@
+package org.compain.lade.lade.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.compain.lade.lade.entities.ReservationInquiry;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+public class ReservationInquiryDao extends AbstractDao {
+	
+	private static ReservationInquiryDao instance = new ReservationInquiryDao();
+	
+	private ReservationInquiryDao(){
+		
+	}
+	
+	public static ReservationInquiryDao getInstance() {
+	return instance;	
+	}
+
+	public List<ReservationInquiry> findAll() {
+
+		Session session = this.session();
+		List<ReservationInquiry> listReservationInquiry = new ArrayList<ReservationInquiry>();
+
+		try {
+			session.getTransaction().begin();
+			String sql = "SELECT s FROM " + ReservationInquiry.class.getName() + " s";
+			Query<ReservationInquiry> query = session.createQuery(sql, ReservationInquiry.class);
+			listReservationInquiry = query.getResultList();
+			session.getTransaction().commit();
+			
+   
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+
+		return listReservationInquiry;
+	}
+
+	public ReservationInquiry getReservationInquiryById(Long idReservationInquiry) {
+
+		Session session = this.session();
+		ReservationInquiry infoReservationInquiry = new ReservationInquiry();
+
+		try {
+			session.getTransaction().begin();
+			String sql = "SELECT s FROM " + ReservationInquiry.class.getName() + " s"//									
+					+ " WHERE s.idReservationInquiry= :idReservationInquiry ";
+			
+			Query<ReservationInquiry> query = session.createQuery(sql, ReservationInquiry.class);
+			query.setParameter("idReservationInquiry", idReservationInquiry);
+			infoReservationInquiry = query.getSingleResult(); 			
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return infoReservationInquiry;
+	}
+	
+	public List<ReservationInquiry> findReservationInquiryByIdTopo(Integer idTopo) {
+
+		Session session = this.session();
+		List<ReservationInquiry> listReservationInquiry = new ArrayList<ReservationInquiry>();
+
+		try {
+			session.getTransaction().begin();
+			String sql = "SELECT s FROM " + ReservationInquiry.class.getName() + " s"//
+					+ " WHERE s.topo.idTopo= :idTopo ";		
+						
+			Query<ReservationInquiry> query = session.createQuery(sql, ReservationInquiry.class);
+			query.setParameter("idTopo", idTopo);	
+			listReservationInquiry = query.getResultList(); 
+			session.getTransaction().commit();
+		
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return listReservationInquiry;
+	}
+	
+	public List<ReservationInquiry> findReservationInquiryByIdUser(Integer idUser) {
+
+		Session session = this.session();
+		List<ReservationInquiry> listReservationInquiry = new ArrayList<ReservationInquiry>();
+
+		try {
+			session.getTransaction().begin();
+			String sql = "SELECT s FROM " + ReservationInquiry.class.getName() + " s"//
+					+ " WHERE s.user.idUser= :idUser ";		
+						
+			Query<ReservationInquiry> query = session.createQuery(sql, ReservationInquiry.class);
+			query.setParameter("idUser", idUser);	
+			listReservationInquiry = query.getResultList(); 
+			session.getTransaction().commit();
+		
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return listReservationInquiry;
+	}
+	
+	public void saveOrUpdateReservationInquiry(ReservationInquiry reservationInquiry) {
+
+		Session session = this.session();
+
+		try {
+			session.getTransaction().begin();
+			session.saveOrUpdate(reservationInquiry);
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+	}
+
+}
+

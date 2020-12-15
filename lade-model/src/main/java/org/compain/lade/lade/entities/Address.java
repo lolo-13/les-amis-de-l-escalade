@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "address",
+@Table(name = "Address",
 uniqueConstraints = { @UniqueConstraint(columnNames = { "id_address" }) })
 
 public class Address {	
@@ -17,12 +17,12 @@ public class Address {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column( name = "id_address" )
-	private int idAddress;
+	private Integer idAddress;
     
     @Column( name = "street_number" )
 	private String streetNumber;
     
-	@Column( name = "street_name", nullable=false )
+	@Column( name = "street_name" )
 	private String streetName;
 	
 	@Column( name = "post_code", nullable=false  )
@@ -31,15 +31,19 @@ public class Address {
 	@Column( name = "city", nullable=false  )
 	private String city;
 	
+	@Column( name = "region", nullable=false  )
+	private String region;
+	
 	@Column( name = "country", nullable=false  )
-	private String country;
+	private String country;		
+	
 	
 	// getter and setter
 	
-	public int getIdAddress() {
+	public Integer getIdAddress() {
 		return idAddress;
 	}
-	public void setIdAddress(int idAddress) {
+	public void setIdAddress(Integer idAddress) {
 		this.idAddress = idAddress;
 	}	
   	public String getStreetNumber() {
@@ -71,5 +75,11 @@ public class Address {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
 	}
 }

@@ -1,15 +1,21 @@
 package org.compain.lade.lade.entities;
 
 import java.util.List;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CascadeType;
+
 
 @Entity
 @Table(name = "spot",
@@ -20,26 +26,37 @@ public class Spot {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column( name = "id_spot" ) 
-	private int idSpot;    
+	private Integer idSpot;    
 	
 	@Column( name = "name", nullable=false  )
 	private String name;
 	
-	@OneToOne
-	private Address address;
+	@Column( name = "nombre_voie")
+	private Integer numberOfPath;
+	
+	@Column( name = "niveau_difficulte")
+	private String difficultLevel;
+	
+    @OneToOne 
+    @JoinColumn(name = "id_address", referencedColumnName = "id_address")    
+	private Address address;   
 	
 	@Column( name = "tag" )
-	private boolean tag;
+	private Boolean tag;	
 	
-	@OneToMany
-	private List<Path> paths;
+	@OneToMany ( targetEntity=Sector.class, mappedBy="spot" )
+	private List<Sector> sectors;	
 	
-	// getter and setter	
+	@OneToMany ( targetEntity=Comment.class, mappedBy="spot")
+	private List<Comment> comments;
 
-	public int getIdSpot() {
+	
+	// getter and setter	     
+    
+	public Integer getIdSpot() {
 		return idSpot;
 	}
-	public void setIdSpot(int idSpot) {
+	public void setIdSpot(Integer idSpot) {
 		this.idSpot = idSpot;
 	}
 
@@ -55,17 +72,38 @@ public class Spot {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	public boolean isTag() {
+	public Boolean isTag() {
 		return tag;
 	}
-	public void setTag(boolean tag) {
+	public void setTag(Boolean tag) {
 		this.tag = tag;
 	}
-	public List<Path> getPaths() {
-		return paths;
+	public Boolean getTag() {
+		return tag;
 	}
-	public void setPaths(List<Path> paths) {
-		this.paths = paths;
+	public Integer getNumberOfPath() {
+		return numberOfPath;
+	}
+	public void setNumberOfPath(Integer numberOfPath) {
+		this.numberOfPath = numberOfPath;
+	}
+	public String getDifficultLevel() {
+		return difficultLevel;
+	}
+	public void setDifficultLevel(String difficultLevel) {
+		this.difficultLevel = difficultLevel;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	public List<Sector> getSectors() {
+		return sectors;
+	}
+	public void setSectors(List<Sector> sectors) {
+		this.sectors = sectors;
 	}
 
 }

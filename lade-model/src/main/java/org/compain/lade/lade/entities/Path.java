@@ -7,43 +7,49 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "path", uniqueConstraints = { @UniqueConstraint(columnNames = { "id_path" }) })
+@Table(name = "Path", uniqueConstraints = { @UniqueConstraint(columnNames = { "id_path" }) })
 
 public class Path {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_path")
-	private long idPath;
+	private Long idPath;
 
 	@Column(name = "name", nullable=false )
 	private String name;
 
 	@Column(name = "height", nullable=false )
-	private float height;
+	private Float height;
 
 	@Column(name = "cotation", nullable=false )
 	private String cotation;
 
-	@Column(name = "point_number", nullable=false )
-	private int pointNumber;	
+	@Column(name = "point_number")
+	private Integer pointNumber;
+	
+	@Column(name = "lenght_number")
+	private Integer numberOfLengh;	
 
-	@OneToMany
-	@JoinColumn(name="id_lenght")
+	@OneToMany ( targetEntity=Lenght.class, mappedBy="path" )
 	private List<Lenght> lenghts;
+	
+	@ManyToOne @JoinColumn( name="id_sector" )
+	private Sector sector;
 	
 	// getter and setter
 
-	public long getIdPath() {
+	public Long getIdPath() {
 		return idPath;
 	}
 
-	public void setIdPath(long idPath) {
+	public void setIdPath(Long idPath) {
 		this.idPath = idPath;
 	}
 	public List<Lenght> getLenghts() {
@@ -58,10 +64,10 @@ public class Path {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public float getHeight() {
+	public Float getHeight() {
 		return height;
 	}
-	public void setHeight(float height) {
+	public void setHeight(Float height) {
 		this.height = height;
 	}
 	public String getCotation() {
@@ -70,11 +76,28 @@ public class Path {
 	public void setCotation(String cotation) {
 		this.cotation = cotation;
 	}
-	public int getPointNumber() {
+	public Integer getPointNumber() {
 		return pointNumber;
 	}
-	public void setPointNumber(int pointNumber) {
+	public void setPointNumber(Integer pointNumber) {
 		this.pointNumber = pointNumber;
 	}
+
+	public Sector getSector() {
+		return sector;
+	}
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+
+	public Integer getNumberOfLengh() {
+		return numberOfLengh;
+	}
+
+	public void setNumberOfLengh(Integer numberOfLengh) {
+		this.numberOfLengh = numberOfLengh;
+	}
+
 
 }
