@@ -3,16 +3,20 @@
 <head>
 <meta charset="utf-8" />
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <title>detailspot</title>
 </head>
@@ -21,6 +25,13 @@
 		<%@include file="commun/header.jsp"%>
 	</header>
 	<div class="formulaire">
+		
+		<c:if test="${sessionScope.currentUser.role.code == 2 and infospot.tag != true}">
+			<form class="form-inline" method="post" action="SpotTag">
+			<input type="hidden" name="id" value="${ infospot.getIdSpot() }" />
+		<button class="btn btn-secondary m-3" type="submit">Ajouter aux officiels</button>
+		</form>
+	</c:if>
 		<div class="row mb-3">
 			<div class="detailSpot">
 				<div class="image-gauche">
@@ -79,32 +90,30 @@
 			<c:if test="${sessionScope.currentUser != null}">
 				<div>
 					<form class="form-inline" method="post" action="SpotDetail">
-					<textarea class ="comment" cols="80" rows="4" name="comment">
+						<textarea class="comment" cols="80" rows="4" name="comment">
   					</textarea>
-  					<input type="hidden" name="id" value="${ infospot.getIdSpot() }"/>
-					 <button class="btn btn-secondary m-3" type="submit">Commenter</button>	
-					</form>	
-									
+						<input type="hidden" name="id" value="${ infospot.getIdSpot() }" />
+						<button class="btn btn-secondary m-3" type="submit">Commenter</button>
+					</form>
+
 				</div>
-			</c:if> 
+			</c:if>
 		</p>
 		<p>
-			<h5>Commentaires:</h5>
+		<h5>Commentaires:</h5>
 		<div class="bg-light border border-dark bg-dark text-white">
-				<c:forEach var="comment" items="${infospot.comments}"
-					varStatus="status">
-					<p class="m-2">
-						<span class="text-info">						
-							<c:out value="${comment.getUser().getLogin() }" />
-				 			(
-				 			<fmt:formatDate type = "date" value="${ comment.getPublicationDate() }" />
-				  			) : 
-				  			
-				  		</span>
-						<c:out value="${ comment.getComment() }" />
-					</p>
-				</c:forEach>
-		</div>		
+			<c:forEach var="comment" items="${infospot.comments}"
+				varStatus="status">
+				<p class="m-2">
+					<span class="text-info"> <c:out
+							value="${comment.getUser().getLogin() }" /> ( <fmt:formatDate
+							type="date" value="${ comment.getPublicationDate() }" /> ) :
+
+					</span>
+					<c:out value="${ comment.getComment() }" />
+				</p>
+			</c:forEach>
+		</div>
 		</p>
 	</div>
 	</div>

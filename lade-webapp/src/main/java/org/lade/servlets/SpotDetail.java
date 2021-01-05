@@ -2,7 +2,7 @@ package org.lade.servlets;
 
 import java.io.IOException;
 import java.util.Date;
-
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,40 +28,41 @@ public class SpotDetail extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		String id = request.getParameter("id");		
-		Integer idSpot = Integer.decode(id);		
+
+		String id = request.getParameter("id");
+		Integer idSpot = Integer.decode(id);
 		request.setAttribute("infospot", spotService.getSpot(idSpot));
-		
-		
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/views/detailspot.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		HttpSession session = request.getSession();	
-		
-		
-		String id = request.getParameter("id");		
-		Integer idSpot = Integer.decode(id);	
-		
-		Spot spot = spotService.getSpot(idSpot);	
+
+		HttpSession session = request.getSession();
+
+		String id = request.getParameter("id");
+		Integer idSpot = Integer.decode(id);
+
+		Spot spot = spotService.getSpot(idSpot);
 		User user = (User) session.getAttribute("currentUser");
 
-        Comment comment = new Comment();
-        
-        comment.setComment(request.getParameter("comment"));
-        comment.setPublicationDate(new Date());
-        comment.setSpot(spot);
-        comment.setUser(user);
-        
-        commentService.addComment(comment);       
-        
-       
-        //this.getServletContext().getRequestDispatcher("/WEB-INF/views/detailspot.jsp").forward(request, response);  
-        response.sendRedirect(request.getContextPath()+"/SpotDetail?id="+id);
+		if (Pattern.matches("[a-zA-Z]+", request.getParameter("comment")) == true) {
+
+			Comment comment = new Comment();
+
+			comment.setComment(request.getParameter("comment"));
+			comment.setPublicationDate(new Date());
+			comment.setSpot(spot);
+			comment.setUser(user);
+
+			commentService.addComment(comment);
+		}
+
+		// this.getServletContext().getRequestDispatcher("/WEB-INF/views/detailspot.jsp").forward(request,
+		// response);
+		response.sendRedirect(request.getContextPath() + "/SpotDetail?id=" + id);
 	}
 
 }

@@ -24,35 +24,58 @@
 	<header>
 		<%@include file="commun/header.jsp"%>
 	</header>
+	<div class="formulaire">
 		<div class="card-deck">
-		<form method="post" action="TopoManagement">
+
 			<c:forEach var="topo" items="${topos}" varStatus="status">
-				<div class="card bg-light">
-					<div class="card-body text-center">
-						<p class="card-text">
-							<c:out value="${topo.name }" />
-						</p>
-						<c:if test="${topo.available != true}">
-						<p class="card-text">
-							<input type="checkbox" name="available" id="available"
-							value="true" /> <label for id="available">passer le topo comme étant disponible</label>
-						</p>
-						</c:if>
-						<p class="card-text">
-							demande de réservation :
-						</p>
-						<c:forEach var="reservation" items="${topo.reservationInquiries}" varStatus="status">							
-							<input type="hidden" name="idReservation" value="${ reservation.idInquiry }" />
+				<form method="post" action="TopoManagement">
+					<div class="card bg-light">
+						<div class="card-body text-center">
 							<input type="hidden" name="idTopo" value="${ topo.idTopo }" />
-							<c:out value="${reservation.user.login }" />
-							 (demande envoyée le : 
-							<fmt:formatDate type="date" value="${ reservation.lendDate }" />)
-							<button class="btn btn-secondary" type="submit">Accepter la demande</button>
-						</c:forEach>
+							<p class="card-text">
+								<c:out value="${topo.name }" />
+							</p>
+							<c:if test="${topo.available != true}">
+								<p class="card-text">
+									<input type="checkbox" name="available" id="available"
+										value="true" /> <label for id="available">passer le
+										topo comme étant disponible</label>
+								</p>
+							</c:if>
+
+							<p class="card-text">demande de réservation :</p>
+							<c:forEach var="reservation" items="${topo.reservationInquiries}"
+								varStatus="status">
+								<input type="hidden" name="idReservation"
+									value="${ reservation.idInquiry }" />
+								<p class="card-text">
+									<c:out value="${reservation.user.login }" />
+									(demande envoyée le :
+									<fmt:formatDate type="date" value="${ reservation.lendDate }" />
+									)
+								</p>
+								<p class="card-text">
+									<c:out value="${ reservation.message }" />
+								</p>
+								<p class="card-text">
+									<c:out value="${ reservation.user.email }" />
+								</p>
+								<p class="card-text">
+									<input type="checkbox" name="reserved" id="reserved"
+										value="true" /> <label for id="reserved">accepter la
+										demande</label>
+								</p>
+							</c:forEach>
+							<p class="card-text">
+								<button class="btn btn-secondary" type="submit">mettre
+									à jour</button>
+							</p>
+						</div>
 					</div>
-				</div>
+				</form>
 			</c:forEach>
-			</form>
+
 		</div>
+	</div>
 </body>
 </html>

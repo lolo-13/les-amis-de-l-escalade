@@ -140,8 +140,8 @@ width:90%;
 	position: relative;
 	height: 50px;
 	left: 0;
-	bottom: 0;
-	
+	top: 100%;
+	transform: translateY(-129%);
 }
 
 .formulaire {	

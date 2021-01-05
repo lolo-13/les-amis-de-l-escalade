@@ -25,6 +25,9 @@ public class ReservationInquiry {
     @Column( name = "statut", nullable=false  )    
 	private String statut;
     
+    @Column( name = "message" )    
+	private String message;
+    
     @Column( name = "lend_date", nullable=false  )
 	private Date lendDate;
     
@@ -33,6 +36,8 @@ public class ReservationInquiry {
 	
 	@ManyToOne @JoinColumn( name="id_topo" )
 	private Topo topo;
+	
+	
 	
 	// getter and setter
     
@@ -65,6 +70,12 @@ public class ReservationInquiry {
 	}
 	public void setTopo(Topo topo) {
 		this.topo = topo;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

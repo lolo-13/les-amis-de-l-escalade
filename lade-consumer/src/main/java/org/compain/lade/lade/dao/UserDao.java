@@ -51,6 +51,7 @@ public class UserDao extends AbstractDao {
 					+ " WHERE s.idUser= :idUser ";
 			String sql2 = "SELECT c FROM " + ReservationInquiry.class.getName() + " c"
 					+ " WHERE c.reservationinquiry.idUser= :idUser ";
+			
 
 			Query<User> query = session.createQuery(sql, User.class);
 			query.setParameter("idUser", idUser);

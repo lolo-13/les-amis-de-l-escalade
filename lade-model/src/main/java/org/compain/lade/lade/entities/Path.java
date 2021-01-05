@@ -1,8 +1,11 @@
 package org.compain.lade.lade.entities;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +40,7 @@ public class Path {
 	@Column(name = "lenght_number")
 	private Integer numberOfLengh;	
 
-	@OneToMany ( targetEntity=Lenght.class, mappedBy="path" )
+	@OneToMany ( targetEntity=Lenght.class, mappedBy="path")
 	private List<Lenght> lenghts;
 	
 	@ManyToOne @JoinColumn( name="id_sector" )

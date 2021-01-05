@@ -40,7 +40,7 @@ public class ReservationInquiryDao extends AbstractDao {
 		return listReservationInquiry;
 	}
 
-	public ReservationInquiry getReservationInquiryById(Long idReservationInquiry) {
+	public ReservationInquiry getReservationInquiryById(Long idInquiry) {
 
 		Session session = this.session();
 		ReservationInquiry infoReservationInquiry = new ReservationInquiry();
@@ -48,10 +48,10 @@ public class ReservationInquiryDao extends AbstractDao {
 		try {
 			session.getTransaction().begin();
 			String sql = "SELECT s FROM " + ReservationInquiry.class.getName() + " s"//									
-					+ " WHERE s.idReservationInquiry= :idReservationInquiry ";
+					+ " WHERE s.idInquiry= :idInquiry ";
 			
 			Query<ReservationInquiry> query = session.createQuery(sql, ReservationInquiry.class);
-			query.setParameter("idReservationInquiry", idReservationInquiry);
+			query.setParameter("idInquiry", idInquiry);
 			infoReservationInquiry = query.getSingleResult(); 			
 			session.getTransaction().commit();
 

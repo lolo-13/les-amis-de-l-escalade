@@ -96,7 +96,7 @@
 			</a>
 			
 			<c:url var="topoManagement" value="TopoManagement">
-				<c:param name="idUser" value="${ account.idUser }" />
+				<c:param name="idUser" value="${ account.idUser }" />				
 			</c:url>
 			<a id="containerPLus" href="${ topoManagement }">
 				<p>
@@ -109,7 +109,9 @@
 		<ul class="list">
 			<c:forEach var="reservation" items="${account.reservationInquiries}"
 				varStatus="status">
-				<li><c:out value="${reservation.topo.name }" /></li>
+				<li>
+				<c:out value="${reservation.topo.name }" /> : <c:out value="${reservation.statut }" /> 
+				</li>
 			</c:forEach>
 		</ul>
 	</div>

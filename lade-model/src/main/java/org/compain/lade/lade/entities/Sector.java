@@ -2,8 +2,10 @@ package org.compain.lade.lade.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,7 @@ public class Sector {
 	@Column(name = "path_number", nullable=false )
 	private Integer numberOfPath;
 
-	@OneToMany ( targetEntity=Path.class, mappedBy="sector" )
+	@OneToMany ( targetEntity=Path.class, mappedBy="sector", cascade = CascadeType.ALL, fetch= FetchType.EAGER )
 	private List<Path> paths;
 	
 	@ManyToOne @JoinColumn( name="id_spot" )

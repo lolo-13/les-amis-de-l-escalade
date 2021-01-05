@@ -5,6 +5,7 @@ import java.util.List;
 import org.compain.lade.lade.dao.SpotDao;
 import org.compain.lade.lade.entities.Spot;
 
+
 public class SpotService {
 
 	private static SpotService instance = new SpotService();
@@ -28,6 +29,16 @@ public class SpotService {
 	}
 	public List<Spot> findSpots(String region, String difficult, String country, String postcode, String name ) {
 		return spotDao.findSpots(region, difficult, country, postcode, name);
+	}
+	
+	public void  updateSpotTag(Spot newSpot, Integer idSpot ) {
+		
+		Spot old = spotDao.getSpot(idSpot);
+		
+		old.setTag(newSpot.getTag());
+
+		spotDao.saveOrUpdateSpot(old);
+		
 	}
 	
 	public void addSpot(Spot spot) {

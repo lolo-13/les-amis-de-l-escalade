@@ -3,8 +3,10 @@ package org.compain.lade.lade.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +25,7 @@ public class Role {
     @Column( name = "label", nullable=false  )
 	private String label;  
     
-	@OneToMany ( targetEntity=User.class, mappedBy="role" )
+	@OneToMany ( targetEntity=User.class, mappedBy="role", cascade = CascadeType.ALL, fetch= FetchType.EAGER )
 	private List<User> users;
     
     // getter and setter

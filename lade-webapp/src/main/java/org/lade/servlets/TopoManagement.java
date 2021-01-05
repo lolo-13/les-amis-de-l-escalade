@@ -41,9 +41,12 @@ public class TopoManagement extends HttpServlet {
 		ReservationInquiry newReservation = new ReservationInquiry();
 
 		Topo topo = topoService.getTopoById(Integer.valueOf(request.getParameter("idTopo")));
+		
 		String availableString = null;
+		String reservedString = null;
 		Boolean available = topo.getAvailable();
 		Integer idTopo = topo.getIdTopo();
+		
 
 		if (available == false) {
 
@@ -52,19 +55,37 @@ public class TopoManagement extends HttpServlet {
 			if (availableString != null && availableString.equals("true")) {
 				available = true;
 			}
-			
+
 			newTopo.setAvailable(available);
 
 			topoService.updateTopoAvailability(newTopo, idTopo);
-			
-		}		
-		
-		ReservationInquiry reservation = reservationInquiryService.getReservationInquiryById(Long.valueOf(request.getParameter("idReservation")));
 
-		newReservation.setStatut("acceptée");
-		
-		reservationInquiryService.updateReservationInquiryStatut(newReservation, reservation.getIdInquiry());
-		
+		}
+
+		if (available == true) {
+			
+
+			reservedString = request.getParameter("reserved");
+			System.out.println(reservedString);
+
+
+			if (reservedString != null && reservedString.equals("true")) {
+
+				ReservationInquiry reservation = reservationInquiryService
+						.getReservationInquiryById(Long.valueOf(request.getParameter("idReservation")));
+
+				newReservation.setStatut("acceptée");
+
+				reservationInquiryService.updateReservationInquiryStatut(newReservation, reservation.getIdInquiry());
+				
+				available =false;
+				newTopo.setAvailable(available);
+
+				topoService.updateTopoAvailability(newTopo, idTopo);
+
+			}
+		}
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/views/topomanagement.jsp").forward(request, response);
 
 	}
