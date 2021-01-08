@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.compain.lade.lade.entities.User;
 import org.compain.lade.lade.service.ReservationInquiryService;
+import org.compain.lade.lade.service.TopoService;
 import org.compain.lade.lade.service.UserService;
 
 @WebServlet("/Account")
@@ -20,12 +21,15 @@ public class Account extends HttpServlet{
 
 	private UserService userService = UserService.getInstance();
 	private ReservationInquiryService reservationInquiryService = ReservationInquiryService.getInstance();
+	private TopoService topoService = TopoService.getInstance();
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {		
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();			
 		
+		request.setAttribute("topos", topoService.findAll());
 		request.setAttribute("account", session.getAttribute("currentUser"));	
 		request.setAttribute("reservationInquiries", reservationInquiryService.findAll());
 		

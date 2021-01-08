@@ -66,7 +66,7 @@
 										demande</label>
 								</p>
 							</c:forEach>
-							<p class="card-text">
+							<p class="card-text">							
 								<button class="btn btn-secondary" type="submit">mettre
 									à jour</button>
 							</p>

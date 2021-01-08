@@ -8,15 +8,14 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 public class SectorDao extends AbstractDao {
-	
-private static SectorDao instance = new SectorDao();
-	
-	private SectorDao(){
-		
+
+	private static SectorDao instance = new SectorDao();
+
+	private SectorDao() {
 	}
-	
+
 	public static SectorDao getInstance() {
-	return instance;	
+		return instance;
 	}
 
 	public List<Sector> findAll() {
@@ -28,9 +27,9 @@ private static SectorDao instance = new SectorDao();
 			session.getTransaction().begin();
 			String sql = "SELECT s FROM " + Sector.class.getName() + " s";
 			Query<Sector> query = session.createQuery(sql, Sector.class);
-			listSector = query.getResultList();	
+			listSector = query.getResultList();
 			session.getTransaction().commit();
-   
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -47,11 +46,10 @@ private static SectorDao instance = new SectorDao();
 		try {
 			session.getTransaction().begin();
 			String sql = "SELECT s FROM " + Sector.class.getName() + " s"//
-					+ " JOIN FETCH s.paths path"				
-					+ " WHERE s.idSector= :idSector ";
+					+ " LEFT JOIN FETCH s.paths path" + " WHERE s.idSector= :idSector ";
 			Query<Sector> query = session.createQuery(sql, Sector.class);
 			query.setParameter("idSector", idSector);
-			infoSector = query.getSingleResult();    
+			infoSector = query.getSingleResult();
 			session.getTransaction().commit();
 
 		} catch (Exception e) {
@@ -59,8 +57,8 @@ private static SectorDao instance = new SectorDao();
 			session.getTransaction().rollback();
 		}
 		return infoSector;
-	}	
-	
+	}
+
 	public void saveOrUpdateSector(Sector sector) {
 
 		Session session = this.session();
@@ -75,7 +73,5 @@ private static SectorDao instance = new SectorDao();
 			session.getTransaction().rollback();
 		}
 	}
-
-
 
 }

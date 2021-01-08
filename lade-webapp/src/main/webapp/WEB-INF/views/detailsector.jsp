@@ -45,7 +45,7 @@
 				<c:if test="${sessionScope.currentUser != null}">
 					<div>
 						<c:url var="path" value="PathAdd">
-							<c:param name="id" value="${ infosector.getIdSector() }" />
+							<c:param name="idsector" value="${idsector}" />
 						</c:url>
 						<a id="containerPLus" href="${ path }">
 							<p>

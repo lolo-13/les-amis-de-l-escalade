@@ -50,13 +50,12 @@
 
 				<div class="col">
 					<input type="text" class="form-control"
-						placeholder="nombre de spits *" id="numberofpoint"
+						placeholder="nombre de spits *" id="numberofpoints"
 						name="numberofpoints" required>
 				</div>
 			
 			<div class="col">
-				<input id="id" name="id" type="hidden"
-					value="${infosector.idSector}">
+				<input id="idsector" name="idsector" type="hidden" value="${infosector.idSector}">
 				<button class="btn btn-secondary" type="submit">Enregistrer
 					la voie</button>
 			</div>

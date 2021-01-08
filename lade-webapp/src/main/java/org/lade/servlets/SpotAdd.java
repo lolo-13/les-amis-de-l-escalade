@@ -18,7 +18,8 @@ public class SpotAdd extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	private SpotService spotService = SpotService.getInstance();	
+	private SpotService spotService = SpotService.getInstance();
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {		
@@ -39,15 +40,19 @@ public class SpotAdd extends HttpServlet {
 		address.setCity(request.getParameter("city"));
 		address.setCountry(request.getParameter("country"));
 		address.setRegion(request.getParameter("region"));
+		
+		
 		spot.setName(request.getParameter("name"));
 		spot.setAddress(address);
-	
+		spot.setDifficultLevel(request.getParameter("cotation"));
+		spot.setNumberOfPath(Integer.valueOf(request.getParameter("paths")));
+		spot.setTag(false);
         
         spotService.addSpot(spot);
         
         
         
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/accueil.jsp").forward(request, response);      
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/spot.jsp").forward(request, response);      
        
 	}
 

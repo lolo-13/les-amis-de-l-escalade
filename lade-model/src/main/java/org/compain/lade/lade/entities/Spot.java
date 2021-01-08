@@ -2,7 +2,7 @@ package org.compain.lade.lade.entities;
 
 import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,8 +37,8 @@ public class Spot {
 	@Column( name = "niveau_difficulte")
 	private String difficultLevel;
 	
-    @OneToOne 
-    @JoinColumn(name = "id_address", referencedColumnName = "id_address")    
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address", referencedColumnName = "id_address" )    
 	private Address address;   
 	
 	@Column( name = "tag" )

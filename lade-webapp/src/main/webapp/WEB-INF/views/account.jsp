@@ -57,7 +57,8 @@
 	<div class="formulaire">
 		<p>Mes topos:</p>
 		<div class="card-deck">
-			<c:forEach var="topo" items="${account.topos}" varStatus="status">
+			<c:forEach var="topo" items="${topos}" varStatus="status">
+			<c:if test="${topo.user.idUser == account.idUser}">
 				<div class="card bg-light">
 					<div class="card-body text-center">
 						<p class="card-text">
@@ -81,6 +82,7 @@
 						</c:forEach>
 					</div>
 				</div>
+				</c:if>
 			</c:forEach>
 
 		</div>

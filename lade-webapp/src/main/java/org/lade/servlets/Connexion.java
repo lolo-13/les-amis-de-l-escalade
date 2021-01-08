@@ -34,8 +34,8 @@ public class Connexion extends HttpServlet {
 		String login= request.getParameter("login"); 
         String password= request.getParameter("password"); 
                
-        User user =userService.login(login, password);       
-                
+        User user =userService.login(login, password);   
+        
         HttpSession session = request.getSession();
 
         session.setAttribute("currentUser", user);

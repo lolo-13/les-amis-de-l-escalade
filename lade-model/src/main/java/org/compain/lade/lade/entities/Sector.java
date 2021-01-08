@@ -34,7 +34,8 @@ public class Sector {
 	@OneToMany ( targetEntity=Path.class, mappedBy="sector", cascade = CascadeType.ALL, fetch= FetchType.EAGER )
 	private List<Path> paths;
 	
-	@ManyToOne @JoinColumn( name="id_spot" )
+	@ManyToOne 
+	@JoinColumn( name="id_spot" )
 	private Spot spot;
 
 	public Long getIdSector() {

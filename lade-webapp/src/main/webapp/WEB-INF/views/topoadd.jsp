@@ -29,11 +29,11 @@
 						placeholder="Nom du topo(*)" id="name" name="name" required>
 				</div>
 				<div class="col">
-					<select id="region" class="form-control">
+					<select id="location" name = "location" class="form-control">
 						<option value="">Choisissez la région concernée" *</option>
-						<optgroup label="region">
+						<optgroup label="location">
 							<option>PACA</option>
-							<option>Nouvelle-Aquitaine</option>
+							<option>NOUVELLE-AQUITAINE</option>
 							<option>Etc...</option>
 						</optgroup>
 					</select>

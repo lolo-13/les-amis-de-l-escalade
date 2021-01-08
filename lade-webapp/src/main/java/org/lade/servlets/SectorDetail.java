@@ -32,7 +32,7 @@ public class SectorDetail extends HttpServlet {
 		String idsector = request.getParameter("idsector");		
 		Long idSector = Long.decode(idsector);		
 		request.setAttribute("infosector", sectorService.getSector(idSector));
-		
+		request.setAttribute("idsector", Long.decode(idsector));
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/views/detailsector.jsp").forward(request, response);
 	}

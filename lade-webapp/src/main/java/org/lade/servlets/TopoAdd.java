@@ -34,9 +34,7 @@ public class TopoAdd extends HttpServlet {
 		User user = (User) session.getAttribute("currentUser");
 		
 		Topo topo = new Topo();
-		
-		
-
+			
 		topo.setName(request.getParameter("name"));	
 		topo.setAvailable(true);
 		topo.setDescription(request.getParameter("description"));

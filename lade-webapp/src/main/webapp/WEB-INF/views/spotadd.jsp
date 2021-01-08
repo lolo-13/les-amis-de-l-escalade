@@ -42,18 +42,18 @@
 						id="streetname" name="streetname">
 				</div>
 				<div class="col">
-					<input type="password" class="form-control" id="postcode "
+					<input type="text" class="form-control" id="postcode "
 						placeholder="code postal (*)" name="postcode" required>
 				</div>
 			</div>
 			<div class="row mb-3">
 
 				<div class="col">
-					<input type="password" class="form-control" id="city"
+					<input type="text" class="form-control" id="city"
 						placeholder="Ville (*)" name="city" required>
 				</div>
 				<div class="col">
-					<select id="region" class="form-control" >
+					<select id="region" name="region" class="form-control" >
 					<option value="">Choisissez la région *</option>
                      <optgroup label="region">						
 						<option >PACA</option>
@@ -67,7 +67,17 @@
 						id="country" name="country" required>
 				</div>
 			</div>
-
+			<div>Infos spot:</div>
+			<div class="row mb-3">
+				<div class="col">
+					<input type="text" class="form-control" placeholder="2a à 4c (indiquez la plus petite et la plus grand cotation)"
+						id="cotation" name="cotation">
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" placeholder="nombre de voie"
+						id="paths" name="paths">
+				</div>
+			</div>			
 			<button class="btn btn-secondary" type="submit">Enregistrer</button>
 		</form>
 	</div>

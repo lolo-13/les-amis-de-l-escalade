@@ -33,7 +33,10 @@ public class UserService {
 		 String passwordUser = currentUser.getPassword();
 		 password = EncriptionTools.encrypt(password);
 		 if (passwordUser.equals(password)) {
-			 return currentUser;
+			 return currentUser;			 
+		 }
+		 if (!passwordUser.equals(password)) {
+			 return null;			 
 		 }
 		 throw new RuntimeException(); 
 	}

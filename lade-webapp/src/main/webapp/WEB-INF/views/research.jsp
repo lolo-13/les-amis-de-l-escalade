@@ -26,9 +26,9 @@
 				<div class="col">
 					<select id="region" name="region" class="form-control">
 						<option value="">Choisissez la région</option>
-						<option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
+						<option value="NOUVELLE-AQUITAINE">Nouvelle-Aquitaine</option>
 						<option value="PACA">PACA</option>
-						<option value="Rhône-Alpes">Rhône-Alpes</option>
+						<option value="AUVERGNE-RHONE-ALPES">Auvergne-Rhône-Alpes</option>
 						<option value="etc..">etc..</option>
 						<option value="etc...">etc...</option>
 					</select>

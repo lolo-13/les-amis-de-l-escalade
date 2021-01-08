@@ -49,7 +49,7 @@ public class SectorAdd extends HttpServlet {
         
 		sectorService.addSector(sector);
         
-		this.getServletContext().getRequestDispatcher("/WEB-INF/views/sector.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/views/spot.jsp").forward(request, response);
 
 	}
 
