@@ -15,6 +15,10 @@ Cloner le projet sous GitHub
 
 Importer le projet dans l'IDE ( projet développé avec Eclipse)
 
+Compiler via maven avec la commande mvn clean compile
+
+Le fichier war est généré dans le repertoire target
+
 Créer une base de données nommée lade sous postgreSQL
 
 Utiliser le script du dump pour créer les tables puis le script du jeu de données pour remplir les tables de la BDD
