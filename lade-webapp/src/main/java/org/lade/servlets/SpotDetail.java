@@ -47,8 +47,10 @@ public class SpotDetail extends HttpServlet {
 
 		Spot spot = spotService.getSpot(idSpot);
 		User user = (User) session.getAttribute("currentUser");
+		
+		String stringCom = request.getParameter("comment");		
 
-		if (Pattern.matches("[a-zA-Z]+", request.getParameter("comment")) == true) {
+		if (stringCom.matches(".*[a-zA-Z].*") == true) {
 
 			Comment comment = new Comment();
 

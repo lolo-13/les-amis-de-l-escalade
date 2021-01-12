@@ -3,16 +3,20 @@
 <head>
 <meta charset="utf-8" />
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <title>Ajouter un topo</title>
 </head>
@@ -29,7 +33,7 @@
 						placeholder="Nom du topo(*)" id="name" name="name" required>
 				</div>
 				<div class="col">
-					<select id="location" name = "location" class="form-control">
+					<select id="location" name="location" class="form-control">
 						<option value="">Choisissez la région concernée" *</option>
 						<optgroup label="location">
 							<option>PACA</option>
@@ -44,11 +48,14 @@
 				<label for="description">Descritpion du topo :</label>
 				<div class="col">
 
-					<textarea class="description" cols="80" rows="4" name="description">
+					<textarea class="description" cols="55" rows="4" name="description">
   					</textarea>
 
 				</div>
-
+				<div class="col">
+					<input type="checkbox" name="available" id="available" value="true" /> <label
+						for id="available">topo disponible</label>
+				</div>
 			</div>
 
 			<button class="btn btn-secondary" type="submit">Enregistrer</button>

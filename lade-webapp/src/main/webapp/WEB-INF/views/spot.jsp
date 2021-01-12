@@ -34,6 +34,7 @@
 					<img src="images/site<c:out value="${spot.idSpot}"/>.png">
 					<c:if test="${ spot.tag  == true}"><div class="tampon"></div></c:if>
 				</a>
+				<div> ${ spot.address.region }</div>
 				</li>
 			</c:forEach>
 

@@ -76,10 +76,15 @@
 								</c:if>
 							</p>
 							<p class="card-text">
+								<p>
+								votre message à <c:out value="${topo.user.login }" /> :
+								</p>
+								<p>
 								<c:if test="${topo.available == true}">
-									<textarea class="comment" cols="80" rows="4" name="comment">
+									<textarea class="comment" cols="55" rows="5" name="comment">
   								</textarea>
 								</c:if>
+								</P>
 							</p>
 							<c:if test="${topo.available == true}">
 							<input type="hidden" name="idUser"

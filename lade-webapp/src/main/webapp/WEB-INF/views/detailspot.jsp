@@ -25,13 +25,15 @@
 		<%@include file="commun/header.jsp"%>
 	</header>
 	<div class="formulaire">
-		
-		<c:if test="${sessionScope.currentUser.role.code == 2 and infospot.tag != true}">
+
+		<c:if
+			test="${sessionScope.currentUser.role.code == 2 and infospot.tag != true}">
 			<form class="form-inline" method="post" action="SpotTag">
-			<input type="hidden" name="id" value="${ infospot.getIdSpot() }" />
-		<button class="btn btn-secondary m-3" type="submit">Ajouter aux officiels</button>
-		</form>
-	</c:if>
+				<input type="hidden" name="id" value="${ infospot.getIdSpot() }" />
+				<button class="btn btn-secondary m-3" type="submit">Ajouter
+					aux officiels</button>
+			</form>
+		</c:if>
 		<div class="row mb-3">
 			<div class="detailSpot">
 				<div class="image-gauche">
@@ -54,7 +56,6 @@
 						</li>
 						<li>Cotation: <c:out value="${ infospot.difficultLevel }" /></li>
 					</ul>
-
 					<p>secteurs :</p>
 					<ul class="list">
 						<c:forEach var="sector" items="${infospot.sectors}"
@@ -86,7 +87,6 @@
 			</div>
 		</div>
 		<p>
-
 			<c:if test="${sessionScope.currentUser != null}">
 				<div>
 					<form class="form-inline" method="post" action="SpotDetail">
@@ -95,7 +95,6 @@
 						<input type="hidden" name="id" value="${ infospot.getIdSpot() }" />
 						<button class="btn btn-secondary m-3" type="submit">Commenter</button>
 					</form>
-
 				</div>
 			</c:if>
 		</p>
@@ -104,14 +103,21 @@
 		<div class="bg-light border border-dark bg-dark text-white">
 			<c:forEach var="comment" items="${infospot.comments}"
 				varStatus="status">
-				<p class="m-2">
-					<span class="text-info"> <c:out
-							value="${comment.getUser().getLogin() }" /> ( <fmt:formatDate
-							type="date" value="${ comment.getPublicationDate() }" /> ) :
+				<form class="form-inline" method="get" action="CommentManagement">
+					<p class="m-2">
+						<span class="text-info"> <c:out
+								value="${comment.getUser().getLogin() }" /> ( <fmt:formatDate
+								type="date" value="${ comment.getPublicationDate() }" /> ) :
+						</span>
+						<c:out value="${ comment.getComment() }" />
+						<c:if test="${sessionScope.currentUser.role.code == 2}">
 
-					</span>
-					<c:out value="${ comment.getComment() }" />
-				</p>
+							<input type="hidden" name="idcomment"
+								value="${ comment.idComment}" />
+							<button class="btn btn-secondary m-3" type="submit">Modifier/Supprimer</button>
+						</c:if>
+					</p>
+				</form>
 			</c:forEach>
 		</div>
 		</p>
