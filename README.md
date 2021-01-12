@@ -28,8 +28,11 @@ Dans le module lade-model sous \src\main\resources modifier le fichier hibernate
  - ligne 13 utilisateur de la bdd (indiquer le nom d'utilisateur de la base de données créée)
 
  - ligne 14 mot de passe de la bdd (indiquer le mot de passe de la base de données créée)
+ 
 
-Demarrer le serveur tomcat sur l'IDE puis se rendre via le navigateur sur l'adresse http://localhost:8080/lade-webapp/Accueil
+Soit demarrer le serveur tomcat sur l'IDE, soit copier le fichier war de l'application depuis le dossier target dans le dossier webapps du répertoire Tomcat, puis lancer le serveur Tomcat
+
+Puis se rendre via le navigateur sur l'adresse http://localhost:portduserveur/lade-webapp/Accueil
 
 L'application est prète à fonctionner avec 3 utilisateurs :
 
